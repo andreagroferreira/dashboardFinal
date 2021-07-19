@@ -1,9 +1,9 @@
 <template>
   <div>
     <b-row v-if="displayMode==='thumb'" key="thumb">
-      <b-colxx xxs="12" class="mb-3" v-for="(item,index) in items" :key="index" :id="item.leads.id">
+      <b-colxx xxs="12" class="mb-3" v-for="(item,index) in items" :key="index" :id="item.client.id">
         <thumb-list-item
-          :key="item.leads.id"
+          :key="item.client.id"
           :data="item"
           :selected-items="selectedItems"
           @toggle-item="toggleItem"
@@ -12,9 +12,9 @@
       </b-colxx>
     </b-row>
     <b-row v-else-if="displayMode==='list'" key="list">
-      <b-colxx xxs="12" class="mb-3" v-for="(item,index) in items" :key="index" :id="item.leads.id">
+      <b-colxx xxs="12" class="mb-3" v-for="(item,index) in items" :key="index" :id="item.client.id">
         <data-list-item
-          :key="item.leads.id"
+          :key="item.client.id"
           :data="item"
           :selected-items="selectedItems"
           @toggle-item="toggleItem"
@@ -65,9 +65,9 @@
   </div>
 </template>
 <script>
-import ImageListItem from "../../components/Listing/ImageListItem";
-import ThumbListItem from "../../components/Listing/ThumbListItem";
-import DataListItem from "../../components/Listing/DataListItem";
+import ImageListItem from "../../components/ListingClient/ImageListItem";
+import ThumbListItem from "../../components/ListingClient/ThumbListItem";
+import DataListItem from "../../components/ListingClient/DataListItem";
 export default {
   components: {
     "image-list-item": ImageListItem,
@@ -92,7 +92,7 @@ export default {
     }
   },
   created() {
-    console.log(this.items,'askdjaslkdjalskdjalskdjlaksj')
+    console.log(this.items,'askdjaslkdjalskdjalskdjlaksj22222')
   }
 };
 </script>

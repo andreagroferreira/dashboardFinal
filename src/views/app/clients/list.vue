@@ -4,7 +4,7 @@
       <list-page-heading
         title="Lista de Clientes"
         :selectAll="selectAll"
-        :deleteLead="deleteLeads"
+        :deleteClients="deleteClients"
         :numberLeads="selectedItems.length"
         :filterByService = "filterByPlatform"
         :seviceActive = "service_id"
@@ -79,7 +79,7 @@ export default {
   methods: {
     loadItems() {
       this.isLoad = false
-      Api.GetListLeads(this.page,this.perPage,this.perPage,this.sort.column,this.service_id).then(result =>{
+      Api.GetListClients(this.page,this.perPage,this.perPage,this.sort.column,this.service_id).then(result =>{
         console.log(result)
         this.items = result.data.data
         this.total = result.data.total
@@ -100,7 +100,7 @@ export default {
     searchLeads()
     {
       this.isLoad = false
-      Api.SearchList(this.page,this.perPage,this.perPage,this.service_id,this.search).then(result =>{
+      Api.SearchListClients(this.page,this.perPage,this.perPage,this.service_id,this.search).then(result =>{
         console.log(result)
         this.items = result.data.data
         this.total = result.data.total
@@ -126,7 +126,6 @@ export default {
       this.loadItems()
     },
     changeOrderBy(sort) {
-      console.log(sort,'asdkhasjkhdajkshd')
       this.sort = sort;
       this.loadItems()
     },
@@ -144,20 +143,20 @@ export default {
       if (this.selectedItems.length >= this.items.length) {
         if (isToggle) this.selectedItems = [];
       } else {
-        this.selectedItems = this.items.map(x => x.leads.id);
+        this.selectedItems = this.items.map(x => x.client.id);
       }
     },
-    deleteLeads()
+    deleteClients()
     {
       if(this.selectedItems.length > 0){
-        Api.DestroyLead(this.selectedItems).then(result =>{
+        Api.DestroyClients(this.selectedItems).then(result =>{
           if(result.data.error)
           {
             this.$notify('error', 'Erro ao registar', result.data.error, { duration: 3000, permanent: false });
             return
           }
           this.$bvModal.hide('deleteModal')
-          this.$notify('success', 'Lead Eliminada', result.data.success, { duration: 3000, permanent: false });
+          this.$notify('success', 'Cliente(s) Eliminado(s) com sucesso', result.data.success, { duration: 3000, permanent: false });
           this.loadItems()
         },(error) =>{
           console.log(error)

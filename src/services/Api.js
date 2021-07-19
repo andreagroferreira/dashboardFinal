@@ -1,7 +1,7 @@
 import axios from "axios";
 import {getToken} from '@/utils'
 const apiClient = axios.create({
-  baseURL: 'http://localhost/foxen-tribe/public/api/',
+  baseURL: 'http://localhost/api/',
   withCredentials: false,
 });
 
@@ -112,5 +112,30 @@ export default {
         Authorization: getToken()
       }
     })
-  }
+  },
+  GetListClients(offset,limit,perPage,sort,service_id) {
+    return apiClient.get(`/dashboard/clients/${offset}/${limit}/${perPage}/${sort}/${service_id}`,{
+      headers: {
+        Authorization: getToken()
+      }
+    })
+  },
+  SearchListClients(offset,limit,perPage,service_id,term)
+  {
+    return apiClient.get(`/dashboard/searchClient/${offset}/${limit}/${perPage}/${service_id}/${term}`,{
+      headers: {
+        Authorization: getToken()
+      }
+    })
+  },
+  DestroyClients(clients)
+  {
+    return apiClient.post('/dashboard/destroyClient',{
+        id: clients
+    },{
+      headers: {
+        Authorization: getToken()
+      }
+    })
+  },
 }

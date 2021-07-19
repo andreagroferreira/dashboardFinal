@@ -8,7 +8,7 @@
           variant="primary"
           size="lg"
           class="top-right-button"
-        >Criar Lead</b-button>
+        >Criar Cliente</b-button>
         <b-button-group>
           <b-dropdown split right @click="selectAll(true)" class="check-button" variant="primary">
             <label
@@ -29,13 +29,13 @@
                 }"
               >&nbsp;</span>
             </label>
-            <b-dropdown-item v-b-modal.deleteModal>Eliminar Leads</b-dropdown-item>
+            <b-dropdown-item v-b-modal.deleteModal>Eliminar Clientes</b-dropdown-item>
             <b-dropdown-item>Alterar Estado</b-dropdown-item>
           </b-dropdown>
         </b-button-group>
       </div>
       <add-new-modal v-if="render" :categories="categories" :statuses="statuses"></add-new-modal>
-      <delete-modal :delete-leads="deleteLead" :number-leads="numberLeads"></delete-modal>
+      <delete-modal :delete-clients="deleteClients" :number-leads="numberLeads"></delete-modal>
       <piaf-breadcrumb />
       <div class="mb-2 mt-2">
         <b-button
@@ -116,7 +116,7 @@ import {
 } from "../../components/Svg";
 import AddNewModal from "./AddNewModal";
 import Api from '@/services/Api'
-import DeleteModal from "@/containers/pages/DeleteModal";
+import DeleteModal from "@/containers/clients/DeleteModal";
 export default {
   components: {
     "data-list-icon": DataListIcon,
@@ -141,7 +141,7 @@ export default {
     "to",
     "total",
     "perPage",
-    "deleteLead",
+    "deleteClients",
     "numberLeads",
     "filterByService",
     "seviceActive"
