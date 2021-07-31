@@ -187,6 +187,12 @@ export default {
     {
       Api.GetPlatforms().then(response =>{
 
+        if(response.data.error)
+        {
+          this.render = true
+          return
+        }
+
         response.data.map(item => this.categories.push(
           {
             label: item.title,

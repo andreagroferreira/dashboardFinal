@@ -2,11 +2,11 @@
   <div>
     <b-row>
       <b-colxx xxs="12">
-        <piaf-breadcrumb heading="Editar Lead" />
+        <piaf-breadcrumb heading="Perfil Cliente" />
         <div class="separator mb-5"></div>
       </b-colxx>
     </b-row>
-    <edit-form :userId="lead"></edit-form>
+    <edit-form :userId="client"></edit-form>
   </div>
 </template>
 <script>
@@ -15,7 +15,7 @@ export default {
   components: {
     "edit-form": EditForm,
   },
-  props:['lead'],
+  props:['client'],
 
 };
 </script>

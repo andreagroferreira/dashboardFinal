@@ -7,4 +7,15 @@
 html {
     background-color: $theme-color-1 !important;
 }
-*/ 
+*/
+body::-webkit-scrollbar {
+  width: 10px;               /* width of the entire scrollbar */
+}
+body::-webkit-scrollbar-track {
+  background:  #18191b;        /* color of the tracking area */
+}
+body::-webkit-scrollbar-thumb {
+  background-color: #8f8f8f;    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+  border: 3px solid  #18191b;  /* creates padding around scroll thumb */
+}

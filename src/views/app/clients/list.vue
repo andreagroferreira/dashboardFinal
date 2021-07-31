@@ -81,6 +81,12 @@ export default {
       this.isLoad = false
       Api.GetListClients(this.page,this.perPage,this.perPage,this.sort.column,this.service_id).then(result =>{
         console.log(result)
+        if(result.data.error)
+        {
+          this.isLoad = true
+          this.error= true
+          return;
+        }
         this.items = result.data.data
         this.total = result.data.total
         this.from = result.data.from;

@@ -1,7 +1,6 @@
 <template>
   <b-row>
     <b-colxx  class="disable-text-selection">
-
       <list-page-heading
         :title="$t('menu.leads-list')"
         :selectAll="selectAll"
@@ -82,7 +81,13 @@ export default {
     loadItems() {
       this.isLoad = false
       Api.GetListLeads(this.page,this.perPage,this.perPage,this.sort.column,this.service_id).then(result =>{
-        console.log(result)
+         if(result.data.error)
+         {
+           this.isLoad = true
+           this.error= true
+           return
+
+         }
         this.items = result.data.data
         this.total = result.data.total
         this.from = result.data.from;
@@ -93,17 +98,16 @@ export default {
         this.isLoad = true
         this.error= false
 
-      },error =>{
+
+      }).catch(error => {
+
         console.log(error)
-        this.isLoad = true
-        this.error= true
       })
     },
     searchLeads()
     {
       this.isLoad = false
       Api.SearchList(this.page,this.perPage,this.perPage,this.service_id,this.search).then(result =>{
-        console.log(result)
         this.items = result.data.data
         this.total = result.data.total
         this.from = result.data.from;
@@ -114,7 +118,6 @@ export default {
         this.isLoad = true
         this.error= false
       },error =>{
-        console.log(error)
         this.isLoad = true
         this.error= true
     })

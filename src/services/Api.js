@@ -1,7 +1,7 @@
 import axios from "axios";
 import {getToken} from '@/utils'
 const apiClient = axios.create({
-  baseURL: 'http://localhost/api/',
+  baseURL: 'https://foxendigital.pt/api/',
   withCredentials: false,
 });
 
@@ -138,4 +138,13 @@ export default {
       }
     })
   },
+  GetClient(id)
+  {
+    return apiClient.get(`/dashboard/client/${id}`,{
+      headers: {
+        Authorization: getToken()
+      }
+    })
+  },
+
 }
